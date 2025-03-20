@@ -1,0 +1,20 @@
+history/
+history*
+
+*.pyc
+.DS_Store
+.vscode/
+
+/temp/
+/.project
+/.pydevproject
+# For PyCharm users
+.idea/
+
+*.eps
+*.jpeg
+*.png
+
+*.pth.tar
+*.csv
+/cp_rl_solver/selected-models/
