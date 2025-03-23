@@ -1,0 +1,31 @@
+domain: MOSP
+reduce: min
+cost_type: integer
+objects:
+  - customer
+state_variables:
+  - name: remaining
+    type: set
+    object: customer
+  - name: opened
+    type: set
+    object: customer
+tables:
+  - name: neighbors
+    type: set
+    object: customer
+    args:
+      - customer
+transitions:
+  - name: close
+    parameters:
+      - name: c
+        object: remaining
+    cost: (max cost |(union (intersection opened remaining) (difference (neighbors c) opened))|)
+    effect:
+      remaining: (remove c remaining)
+      opened: (union opened (neighbors c))
+base_cases:
+  - - (is_empty remaining)
+dual_bounds:
+  - 0

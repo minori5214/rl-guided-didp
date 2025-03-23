@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "didppy"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+[project.optoinal-dependencies]
+dev = [
+    "pytest",
+    "flake8",
+    "black",
+    "isort",
+]
+
+[tool.isort]
+profile = 'black'
+src_paths = ['tests', 'examples']
+line_length = 88
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+    "--color=yes",
+]

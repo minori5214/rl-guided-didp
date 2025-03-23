@@ -1,0 +1,43 @@
+name: didp-yaml
+
+on:
+  push:
+    paths:
+      - "dypdl/**"
+      - "dypdl-heuristic-search/**"
+      - "didp-yaml/**"
+      - "!didp-yaml/examples/**"
+      - "!didp-yaml/docs/**"
+      - "!**.md"
+    branches:
+      - main
+      - develop
+  pull_request:
+    paths:
+      - "dypdl/**"
+      - "dypdl-heuristic-search/**"
+      - "didp-yaml/**"
+      - "!didp-yaml/examples/**"
+      - "!didp-yaml/docs/**"
+      - "!**.md"
+    branches:
+      - main
+      - develop
+
+defaults:
+  run:
+    working-directory: didp-yaml
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        rust: [stable]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@1.65.0
+        with:
+          toolchain: ${{ matrix.rust }}
+      - run: cargo test
