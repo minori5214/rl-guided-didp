@@ -1,0 +1,837 @@
+***********************************************************
+[INFO] TRAINING ON RANDOM INSTANCES: TSPTW
+[INFO] n_city: 20
+[INFO] grid_size: 100
+[INFO] max_tw_gap: 100
+[INFO] max_tw_size: 1000
+[INFO] seed: 1
+***********************************************************
+[INFO] TRAINING PARAMETERS
+[INFO] algorithm: DQN
+[INFO] batch_size: 32
+[INFO] learning_rate: 0.000100
+[INFO] hidden_layer: 2
+[INFO] latent_dim: 32
+[INFO] softmax_beta: 10
+[INFO] n_step: -1
+[INFO] n_episode: 1000000
+[INFO] time_limit: 172800
+[INFO] device: gpu
+***********************************************************
+***********************************************************
+[INFO] NUMBER OF FEATURES
+[INFO] n_node_feat: 6
+[INFO] n_edge_feat: 5
+***********************************************************
+[INFO] Memory Initialized
+[INFO] iter time avg_reward_learning loss beta
+[DATA] 0 39.68 21.300365805980647 12.1796 0.0
+[DATA] 10 60.8 19.63529161575916 9.3223 0.018
+[DATA] 20 81.58 21.11873104749825 4.540000000000001 0.038
+[DATA] 30 101.97 20.58181014112452 3.1197000000000004 0.057999999999999996
+[DATA] 40 122.13 20.285389183561378 2.4131999999999993 0.078
+[DATA] 50 142.71 20.775026850142744 2.2981 0.098
+[DATA] 60 162.82 20.57948505833044 2.4527000000000005 0.118
+[DATA] 70 182.7 20.505658384161496 2.7236999999999996 0.138
+[DATA] 80 202.98 21.015313464052564 2.8188 0.15800000000000003
+[DATA] 90 223.02 21.238563820299316 2.6665 0.178
+[DATA] 100 243.55 21.79874634922971 2.8471 0.198
+[DATA] 200 386.98 26.89094606791066 2.8718999999999992 0.398
+[DATA] 300 531.99 35.05866944834993 2.9388 0.598
+[DATA] 400 680.12 42.27187362885285 3.0826999999999996 0.7979999999999999
+[DATA] 500 829.37 46.00068924053485 3.0202 0.998
+[DATA] 600 979.76 49.69649318957123 3.1856 1.198
+[DATA] 700 1129.84 50.560023803967766 3.3361000000000005 1.3980000000000001
+[DATA] 800 1281.46 50.9272340825588 3.7765999999999997 1.5979999999999999
+[DATA] 900 1434.3 50.67540427158813 3.8898 1.7979999999999998
+[DATA] 1000 1587.79 51.30209793318906 4.2533 1.998
+[DATA] 1100 1740.63 51.440821263765514 4.4563 2.198
+[DATA] 1200 1894.34 51.84119330523572 4.4765 2.398
+[DATA] 1300 2048.94 51.70347647046297 4.6521 2.598
+[DATA] 1400 2204.75 51.87605123847119 4.5631 2.798
+[DATA] 1500 2361.68 51.85662266498132 4.740899999999999 2.998
+[DATA] 1600 2518.41 51.933064216118034 4.5242 3.1979999999999995
+[DATA] 1700 2674.77 51.72346649668718 4.288799999999999 3.3979999999999997
+[DATA] 1800 2831.07 51.378289629581566 4.1756 3.598
+[DATA] 1900 2987.72 51.77923383285614 4.659800000000001 3.798
+[DATA] 2000 3144.63 51.69317637172023 4.354700000000001 3.9979999999999998
+[DATA] 2100 3300.25 51.61062739792309 4.0619000000000005 4.198
+[DATA] 2200 3455.86 51.31852304475503 4.0557 4.398000000000001
+[DATA] 2300 3612.34 51.21721643933387 4.4576 4.598
+[DATA] 2400 3769.3 51.47842833116966 3.861 4.798
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+[DATA] 2500 3924.77 51.24884588353697 3.9851000000000005 4.998
+[DATA] 2600 4079.52 51.30045888704835 3.5827999999999993 5.198
+[DATA] 2700 4235.84 50.926381031776494 3.232 5.398
+[DATA] 2800 4393.03 50.71034592907763 3.1487 5.598
+[DATA] 2900 4551.02 50.310166547094674 3.3975999999999997 5.798
+[DATA] 3000 4708.53 50.334711836608975 3.4223000000000003 5.998
+[DATA] 3100 4866.89 49.98715401749209 2.9545999999999997 6.198
+[DATA] 3200 5024.14 49.7507421918989 2.6126 6.398000000000001
+[DATA] 3300 5182.95 51.078982290965996 2.5088 6.598000000000001
+[DATA] 3400 5341.41 50.89711248387238 2.5007 6.798
+[DATA] 3500 5500.53 50.53734042756333 2.1757999999999997 6.997999999999999
+[DATA] 3600 5659.98 50.44608339868797 2.3144 7.198
+[DATA] 3700 5819.85 50.697489173340834 2.2461000000000007 7.398
+[DATA] 3800 5981.2 51.531990745792676 2.2312 7.598000000000001
+[DATA] 3900 6139.51 51.155251822104645 1.9316999999999998 7.798
+[DATA] 4000 6302.59 51.158433124461716 2.1204 7.997999999999999
+[DATA] 4100 6461.98 51.238174602644584 2.0577 8.198
+[DATA] 4200 6620.62 51.62722932141648 2.1223 8.398
+[DATA] 4300 6779.08 51.265241989638454 2.1014 8.598
+[DATA] 4400 6941.18 51.5337126672121 2.0837 8.798
+[DATA] 4500 7100.82 51.5964115436687 2.0728 8.998000000000001
+[DATA] 4600 7260.86 51.62257153287192 1.9169 9.198
+[DATA] 4700 7421.2 51.620705655855176 2.0107999999999997 9.398
+[DATA] 4800 7580.28 52.09721715531013 1.8663000000000003 9.597999999999999
+[DATA] 4900 7740.56 51.72301025267561 1.8742 9.798
+[DATA] 5000 7900.52 51.7187725413779 1.7074999999999996 9.998000000000001
+[DATA] 5100 8060.43 51.854781601765254 1.8041999999999996 10
+[DATA] 5200 8220.96 51.404974355679414 1.8723999999999998 10
+[DATA] 5300 8380.32 52.25369464400008 1.9183999999999999 10
+[DATA] 5400 8541.75 52.03642494554538 1.8846000000000005 10
+[DATA] 5500 8702.32 52.285647239126966 1.7455999999999996 10
+[DATA] 5600 8864.17 51.90150854099358 1.7472999999999999 10
+[DATA] 5700 9025.8 52.10328850480321 1.7946000000000002 10
+[DATA] 5800 9188.51 52.446018899954524 1.6378999999999997 10
+[DATA] 5900 9350.55 52.42272645838489 1.6278000000000001 10
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+[DATA] 6000 9515.28 51.98978198200644 1.7434000000000003 10
+[DATA] 6100 9677.49 52.57228241126928 1.5078 10
+[DATA] 6200 9840.35 52.237348558549954 1.5769000000000002 10
+[DATA] 6300 10003.3 52.51896175692835 1.4641 10
+[DATA] 6400 10165.41 52.523431992569215 1.5269999999999997 10
+[DATA] 6500 10327.44 52.494849102880345 1.5266000000000002 10
+[DATA] 6600 10491.15 52.484481781941575 1.5919999999999996 10
+[DATA] 6700 10655.09 52.22750287404433 1.5467999999999997 10
+[DATA] 6800 10820.24 52.368678222896335 1.4813999999999998 10
+[DATA] 6900 10981.12 52.08112361458283 1.3713 10
+[DATA] 7000 11143.04 52.49986441666604 1.4541999999999997 10
+[DATA] 7100 11305.53 52.323672247681216 1.4173 10
+[DATA] 7200 11467.48 52.251960490592054 1.4851999999999996 10
+[DATA] 7300 11627.1 52.08809826691319 1.3740999999999999 10
+[DATA] 7400 11788.17 52.56733258944219 1.2915 10
+[DATA] 7500 11948.35 52.407007670574856 1.3495 10
+[DATA] 7600 12109.71 52.44523877980088 1.2674000000000003 10
+[DATA] 7700 12270.78 52.41078328375234 1.3607 10
+[DATA] 7800 12432.74 52.04481283825479 1.3607000000000002 10
+[DATA] 7900 12595.2 52.300117185579566 1.3647 10
+[DATA] 8000 12759.42 52.167777139816046 1.4534 10
+[DATA] 8100 12921.62 52.43124260600734 1.3231000000000002 10
+[DATA] 8200 13083.92 52.42003959767259 1.3125 10
+[DATA] 8300 13245.84 52.33054904544422 1.3736000000000004 10
+[DATA] 8400 13407.31 51.51818517560042 1.2449 10
+[DATA] 8500 13571.25 52.462232377102616 1.2719 10
+[DATA] 8600 13735.45 52.37417630810579 1.3217999999999999 10
+[DATA] 8700 13898.74 52.30445153830985 1.1939 10
+[DATA] 8800 14061.93 52.46080845549449 1.1564999999999999 10
+[DATA] 8900 14225.58 52.27574660572642 1.2312 10
+[DATA] 9000 14388.25 52.423316088319716 1.2033000000000003 10
+[DATA] 9100 14552.43 52.632007322499376 1.2165 10
+[DATA] 9200 14716.33 52.2080874544412 1.334 10
+[DATA] 9300 14879.6 52.38985134521219 1.182 10
+[DATA] 9400 15042.72 52.48458419650578 1.3358 10
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+[DATA] 9500 15206.56 51.94887606612213 1.3137 10
+[DATA] 9600 15369.32 52.30336888024517 1.2761999999999998 10
+[DATA] 9700 15532.52 52.35515929224822 1.3390999999999997 10
+[DATA] 9800 15695.46 52.579521260178026 1.3305 10
+[DATA] 9900 15858.62 52.586274664371565 1.1692 10
+[DATA] 10000 16021.37 52.60325417170024 1.3020000000000005 10
+[DATA] 10100 16182.41 50.70491580115714 1.2382999999999997 10
+[DATA] 10200 16344.56 51.92584194833274 1.1864 10
+[DATA] 10300 16506.76 52.379587211531906 1.1811000000000003 10
+[DATA] 10400 16669.19 52.568987857976225 1.2148999999999999 10
+[DATA] 10500 16831.73 52.43291009483173 1.1873000000000002 10
+[DATA] 10600 16994.93 52.26396072297084 1.2767999999999997 10
+[DATA] 10700 17158.47 52.506995614743616 1.2162000000000002 10
+[DATA] 10800 17322.98 52.55001650446212 1.2154999999999998 10
+[DATA] 10900 17490.87 52.68993530703696 1.2893000000000001 10
+[DATA] 11000 17657.8 52.404453145074214 1.2827000000000002 10
+[DATA] 11100 17837.85 52.65123868821703 1.3199 10
+[DATA] 11200 18014.75 52.57857084892697 1.4453000000000003 10
+[DATA] 11300 18185.5 52.48850703951615 1.1365 10
+[DATA] 11400 18349.59 52.60954586938612 1.2231 10
+[DATA] 11500 18517.2 52.51930182340809 1.3283 10
+[DATA] 11600 18683.09 52.67007215242618 1.2611999999999999 10
+[DATA] 11700 18850.52 52.489247233205695 1.3318 10
+[DATA] 11800 19013.63 52.53881497936918 1.3104 10
+[DATA] 11900 19179.74 52.418510915784076 1.2611 10
+[DATA] 12000 19361.71 52.64575598573843 1.3603999999999996 10
+[DATA] 12100 19542.59 52.447150861729654 1.3402 10
+[DATA] 12200 19720.45 52.58798089750448 1.1259000000000001 10
+[DATA] 12300 19883.14 52.46964392476411 1.2090999999999998 10
+[DATA] 12400 20044.18 52.0508472499976 1.3548000000000002 10
+[DATA] 12500 20206.75 52.38390546157995 1.2812 10
+[DATA] 12600 20368.67 52.65502849516555 1.1832000000000003 10
+[DATA] 12700 20531.27 52.23659851649797 1.2538 10
+[DATA] 12800 20694.77 52.67759143962108 1.1786999999999999 10
+[DATA] 12900 20857.38 52.47793368848994 1.3064 10
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+[DATA] 13000 21018.81 52.63276174068214 1.2996000000000003 10
+[DATA] 13100 21181.37 52.61120984206571 1.2512999999999999 10
+[DATA] 13200 21343.24 52.33220812961168 1.2096999999999998 10
+[DATA] 13300 21505.61 52.496453061028504 1.1949 10
+[DATA] 13400 21668.77 52.49179679469225 1.2319999999999998 10
+[DATA] 13500 21830.37 52.42366739175655 1.2731999999999999 10
+[DATA] 13600 21994.21 52.66295659702216 1.1953999999999998 10
+[DATA] 13700 22161.01 52.57121543673556 1.1922000000000001 10
+[DATA] 13800 22323.31 52.48388778320119 1.3134 10
+[DATA] 13900 22485.75 52.64123508394837 1.222 10
+[DATA] 14000 22648.18 52.64904705532335 1.3670999999999998 10
+[DATA] 14100 22810.03 52.49377698419107 1.3010000000000002 10
+[DATA] 14200 22972.98 52.64572023640381 1.271 10
+[DATA] 14300 23136.03 52.51629382468727 1.3789999999999998 10
+[DATA] 14400 23299.04 52.595501354692836 1.2815999999999999 10
+[DATA] 14500 23464.18 52.57212107982141 1.2490999999999999 10
+[DATA] 14600 23625.9 52.57448193118937 1.3601000000000003 10
+[DATA] 14700 23789.22 52.68304775916237 1.2997 10
+[DATA] 14800 23952.17 52.465016539345406 1.2933999999999999 10
+[DATA] 14900 24114.73 52.586483708280404 1.3113999999999997 10
+[DATA] 15000 24282.1 52.71211460023071 1.3448999999999998 10
+[DATA] 15100 24448.73 52.67654467864993 1.3051000000000001 10
+[DATA] 15200 24613.49 52.513515020453816 1.2232999999999998 10
+[DATA] 15300 24778.92 52.55534784794334 1.3253 10
+[DATA] 15400 24943.45 52.0030411828392 1.3841999999999999 10
+[DATA] 15500 25108.55 52.612462554276 1.2627 10
+[DATA] 15600 25280.13 52.625394322319536 1.3599999999999999 10
+[DATA] 15700 25447.77 52.301976885865905 1.2574999999999998 10
+[DATA] 15800 25614.52 52.35933512180132 1.3287 10
+[DATA] 15900 25783.69 52.62086737815044 1.3699000000000003 10
+[DATA] 16000 25954.86 52.616845349757284 1.2921999999999998 10
+[DATA] 16100 26130.94 52.53601842894622 1.3269999999999997 10
+[DATA] 16200 26308.72 52.484428959343106 1.3404 10
+[DATA] 16300 26481.38 52.364321840267586 1.2476 10
+[DATA] 16400 26654.85 52.47824109085818 1.2778 10
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+[DATA] 16500 26827.55 52.39293680959153 1.3245 10
+[DATA] 16600 27000.91 52.58978389227248 1.3314 10
+[DATA] 16700 27167.09 52.53540390116529 1.2688 10
+[DATA] 16800 27340.83 52.38015392022524 1.2949 10
+[DATA] 16900 27515.25 52.32954785453989 1.2769 10
+[DATA] 17000 27689.66 52.30626523895457 1.2423000000000002 10
+[DATA] 17100 27866.32 52.4829155834997 1.2906 10
+[DATA] 17200 28040.19 52.59625874674512 1.2168999999999999 10
+[DATA] 17300 28215.02 52.450396048892515 1.2281 10
+[DATA] 17400 28391.41 52.593805384895084 1.2538999999999998 10
+[DATA] 17500 28565.7 52.58392294972046 1.2159999999999997 10
+[DATA] 17600 28739.38 52.508223010577034 1.2606000000000002 10
+[DATA] 17700 28905.07 52.53485390782606 1.1313000000000002 10
+[DATA] 17800 29069.46 52.45056791820039 1.2882999999999998 10
+[DATA] 17900 29232.67 52.57963832303836 1.2035000000000002 10
+[DATA] 18000 29396.2 52.564269851971964 1.1045 10
+[DATA] 18100 29559.16 52.377907123320426 1.2835999999999999 10
+[DATA] 18200 29722.36 52.58308404825646 1.2276000000000002 10
+[DATA] 18300 29885.14 52.622800379388934 1.2524 10
+[DATA] 18400 30049.09 52.41694947630114 1.2354 10
+[DATA] 18500 30213.9 52.49049674707624 1.1938 10
+[DATA] 18600 30378.44 52.72419332346269 1.28 10
+[DATA] 18700 30548.92 52.513286331689095 1.2953999999999999 10
+[DATA] 18800 30722.13 52.5912836250353 1.2153 10
+[DATA] 18900 30887.5 52.661010139543535 1.3045 10
+[DATA] 19000 31052.0 52.387127726849116 1.2953000000000001 10
+[DATA] 19100 31216.44 52.66276854781526 1.1144 10
+[DATA] 19200 31379.66 51.87838671284758 1.1938 10
+[DATA] 19300 31543.42 52.582733482193326 1.2373000000000003 10
+[DATA] 19400 31707.9 52.58148403421226 1.1680000000000001 10
+[DATA] 19500 31872.4 52.51048412710039 1.2441999999999998 10
+[DATA] 19600 32037.91 52.70519604379237 1.2321999999999997 10
+[DATA] 19700 32201.96 52.720307629175586 1.2205000000000001 10
+[DATA] 19800 32366.78 52.544613616763016 1.1056 10
+[DATA] 19900 32530.78 50.38568332274719 1.1843 10
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+[DATA] 20000 32695.83 52.3569083946036 1.2088999999999999 10
+[DATA] 20100 32860.65 52.31241112756357 1.1287 10
+[DATA] 20200 33025.53 52.53841558920924 1.2235000000000003 10
+[DATA] 20300 33189.51 52.47491290766689 1.1928000000000003 10
+[DATA] 20400 33354.77 52.70036701507619 1.1316000000000002 10
+[DATA] 20500 33520.13 52.67221148311591 1.2356 10
+[DATA] 20600 33685.45 52.57646614352617 1.2761000000000002 10
+[DATA] 20700 33850.15 51.823749753895044 1.2943999999999998 10
+[DATA] 20800 34014.87 52.64874964036852 1.1865 10
+[DATA] 20900 34178.43 52.63539107155052 1.1652 10
+[DATA] 21000 34343.65 52.565824104361106 1.2488000000000004 10
+[DATA] 21100 34508.22 52.43412432523498 1.177 10
+[DATA] 21200 34673.9 52.684548056811835 1.1618 10
+[DATA] 21300 34838.48 52.53012560259859 1.1539 10
+[DATA] 21400 35002.89 52.64115036732155 1.1496000000000002 10
+[DATA] 21500 35167.79 52.39517836060306 1.1779 10
+[DATA] 21600 35331.35 52.56272933827706 1.1059 10
+[DATA] 21700 35496.14 52.66973235768062 1.0859 10
+[DATA] 21800 35661.53 52.572978999229484 1.0936000000000001 10
+[DATA] 21900 35825.37 52.62719634702505 1.1364999999999998 10
+[DATA] 22000 35989.71 52.60749986710533 1.2523 10
+[DATA] 22100 36154.54 52.66510892767275 1.2073 10
+[DATA] 22200 36319.83 52.495381874925904 1.2805000000000002 10
+[DATA] 22300 36484.2 52.61459741115484 1.4072 10
+[DATA] 22400 36648.58 52.600332514938174 1.1549 10
+[DATA] 22500 36812.2 52.505676436810205 1.1865 10
+[DATA] 22600 36976.05 51.06967926402675 1.1969000000000003 10
+[DATA] 22700 37139.95 51.03423904488305 1.2434 10
+[DATA] 22800 37305.07 52.63578258537886 1.2431999999999999 10
+[DATA] 22900 37469.79 52.613246814772175 1.1767 10
+[DATA] 23000 37635.36 52.52072925819978 1.2109 10
+[DATA] 23100 37798.98 52.67992646879282 1.1969 10
+[DATA] 23200 37963.95 52.6568245636687 1.2270000000000003 10
+[DATA] 23300 38128.02 52.163643826132926 1.1569000000000003 10
+[DATA] 23400 38292.58 52.6857946405406 1.2305000000000001 10
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+[DATA] 23500 38457.32 52.40668225779504 1.2530999999999999 10
+[DATA] 23600 38621.0 52.508411910714955 1.1962 10
+[DATA] 23700 38785.38 52.322552974786156 1.2279000000000002 10
+[DATA] 23800 38950.24 51.31072997591018 1.2743000000000002 10
+[DATA] 23900 39115.47 52.59247094178551 1.2913 10
+[DATA] 24000 39279.6 48.271549424592294 1.2974 10
+[DATA] 24100 39444.47 52.660860266259334 1.2563000000000002 10
+[DATA] 24200 39608.61 52.58930862393541 1.1320999999999999 10
+[DATA] 24300 39773.53 52.65924717808216 1.1615 10
+[DATA] 24400 39937.76 52.72819107161165 1.1289 10
+[DATA] 24500 40101.78 52.09342274640543 1.0625000000000002 10
+[DATA] 24600 40266.23 52.56129499275221 1.1070999999999998 10
+[DATA] 24700 40431.07 52.711509890026335 1.0946 10
+[DATA] 24800 40594.39 52.66658671743682 1.0861999999999998 10
+[DATA] 24900 40758.95 52.51730706386337 1.1334 10
+[DATA] 25000 40924.05 52.73015867531041 1.0363 10
+[DATA] 25100 41088.71 52.62334879011283 1.0347000000000002 10
+[DATA] 25200 41253.64 52.5791510855282 0.9631 10
+[DATA] 25300 41428.22 52.72715304042789 0.9974000000000001 10
+[DATA] 25400 41611.39 52.72587783340114 1.0149 10
+[DATA] 25500 41792.74 52.71604541090268 1.0257 10
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/home/mnari/anaconda3/envs/dp-solver-env/lib/python3.7/site-packages/dgl/heterograph.py:93: DGLWarning: Recommend creating graphs by `dgl.graph(data)` instead of `dgl.DGLGraph(data)`.
+  "Recommend creating graphs by `dgl.graph(data)`"
+/mnt/c/Users/mnari/Code/hybrid-cp-rl-solver/src/problem/tsptw/../../../src/problem/tsptw/learning/trainer_dqn.py:332: RuntimeWarning: invalid value encountered in true_divide
+  logits = logits / div
+Traceback (most recent call last):
+  File "src/problem/tsptw/main_training_dqn_tsptw.py", line 75, in <module>
+    trainer.run_training()
+  File "/mnt/c/Users/mnari/Code/hybrid-cp-rl-solver/src/problem/tsptw/../../../src/problem/tsptw/learning/trainer_dqn.py", line 96, in run_training
+    loss, beta = self.run_episode(i, memory_initialization=False)
+  File "/mnt/c/Users/mnari/Code/hybrid-cp-rl-solver/src/problem/tsptw/../../../src/problem/tsptw/learning/trainer_dqn.py", line 205, in run_episode
+    action = self.soft_select_action(graph, avail, temperature)
+  File "/mnt/c/Users/mnari/Code/hybrid-cp-rl-solver/src/problem/tsptw/../../../src/problem/tsptw/learning/trainer_dqn.py", line 346, in soft_select_action
+    action_idx = np.random.choice(np.arange(len(probabilities)), p=probabilities)
+  File "mtrand.pyx", line 935, in numpy.random.mtrand.RandomState.choice
+ValueError: probabilities contain NaN
