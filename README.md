@@ -78,8 +78,9 @@ source ./didp-rs-dev/didppy/didppy-release/bin/activate
 
 ## Citation
 If you use this repository in your research, please cite our paper:
-arXiv version: https://arxiv.org/abs/2503.16371
-CPAIOR 2025: TBA
+
+- **arXiv version:** [https://arxiv.org/abs/2503.16371](https://arxiv.org/abs/2503.16371)
+- **CPAIOR 2025:** TBA
 
 ---
 
