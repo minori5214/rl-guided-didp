@@ -46,7 +46,7 @@ deactivate
 Create another virtual environment to install `didppy`:
 
 ```sh
-python3 -m venv didppy-release
+python3.12 -m venv didppy-release
 ```
 
 Activate the new virtual environment:
