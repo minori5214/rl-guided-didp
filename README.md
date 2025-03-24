@@ -8,24 +8,69 @@ Please note that `rl_agent/hybrid_cp_rl_solver` is a clone of hybrid-cp-rl-solve
 
 ## Installation
 
-### 1. Create a Virtual Environment
-Ensure you have Python 3.12 installed, then create a virtual environment:
+### 1. Build the Rust Component
+Ensure you have Python 3.12 and Rust installed. Then, build the Rust project in release mode:
 
 ```sh
-python3.12 -m venv ./didp-rs-dev/didppy/didppy-release
+cargo build --release
 ```
 
-### 2. Activate the Virtual Environment
+### 2. Build the Python Package
+Move into the `didppy` directory and set up a virtual environment using Python 3.12:
 
 ```sh
-source ./didp-rs-dev/didppy/didppy-release/bin/activate
+cd didppy
+python3.12 -m venv .venv
+source .venv/bin/activate
+```
+
+Install `maturin`:
+
+```sh
+python3.12 -m pip install maturin
+```
+
+Build the `didppy` package:
+
+```sh
+maturin build --release --manylinux off
+```
+
+Deactivate the virtual environment:
+
+```sh
+deactivate
 ```
 
 ### 3. Install the `didppy` Package
-Install `didppy` from a locally built wheel file:
+Create another virtual environment to install `didppy`:
 
 ```sh
-pip install ./didp-rs-dev/target/wheels/didppy-0.7.2-cp37-abi3-linux_x86_64.whl
+python3 -m venv didppy-release
+```
+
+Activate the new virtual environment:
+
+```sh
+source didppy-release/bin/activate
+```
+
+Install `didppy` from the locally built wheel file:
+
+```sh
+pip install ../target/wheels/didppy-0.7.2-cp37-abi3-linux_x86_64.whl
+```
+
+After installation, deactivate the environment:
+
+```sh
+deactivate
+```
+
+Move back to the root directory:
+
+```sh
+cd ../../
 ```
 
 ### 4. Install Dependencies
@@ -47,6 +92,12 @@ To install additional dependencies:
 
 ```sh
 pip install -r requirements.txt
+```
+
+After installation, deactivate the environment:
+
+```sh
+deactivate
 ```
 
 
