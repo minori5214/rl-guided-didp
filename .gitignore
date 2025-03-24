@@ -12,7 +12,6 @@
 *.jpeg
 *.png
 
-*.pth.tar
 *.csv
 
 *Copy
