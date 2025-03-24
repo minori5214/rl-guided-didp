@@ -74,24 +74,39 @@ cd ../../
 ```
 
 ### 4. Install Dependencies
-#### Install PyTorch (GPU version)
+### Install PyTorch and DGL (Deep Graph Library) (GPU version)
 If using a GPU, install PyTorch with CUDA 11.8 support:
 
 ```sh
 pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu118
 ```
 
-#### Install DGL (Deep Graph Library) with CUDA 11.8 support
+Install DGL with CUDA 11.8 support:
 
 ```sh
 pip install dgl -f https://data.dgl.ai/wheels/torch-2.2/cu118/repo.html
 ```
 
-#### Install Other Dependencies
 To install additional dependencies:
 
 ```sh
 pip install -r requirements.txt
+```
+
+After installation, deactivate the environment:
+
+```sh
+deactivate
+```
+
+
+### Install PyTorch and DGL (Deep Graph Library) (CPU only)
+If GPU support is not available, install the CPU-only versions:
+
+```sh
+pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cpu
+pip install  dgl -f https://data.dgl.ai/wheels/torch-2.2/repo.html
+pip install -r requirements_cpu.txt
 ```
 
 After installation, deactivate the environment:
