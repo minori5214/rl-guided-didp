@@ -126,8 +126,6 @@ source ./didp-rs-dev/didppy/didppy-release/bin/activate
 
 ### 2. Training a model
 
-Same commands as in [hybrid-cp-rl-solver](https://github.com/qcappart/hybrid-cp-rl-solver/tree/master).
-
 If no GPU is detected, the training will automatically run on the CPU.
 
 ```sh
