@@ -124,7 +124,18 @@ deactivate
 source ./didp-rs-dev/didppy/didppy-release/bin/activate
 ```
 
-### 2. Solve instances
+### 2. Training a model
+
+Same commands as in [hybrid-cp-rl-solver](https://github.com/qcappart/hybrid-cp-rl-solver/tree/master).
+
+If no GPU is detected, the training will automatically run on the CPU.
+
+```sh
+./run_training_dqn_tsp.sh # DQN
+./run_training_dqn_tsp.sh # PPO
+```
+
+### 3. Solve instances
 
 #### TSP
 ```
