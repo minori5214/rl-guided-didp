@@ -157,5 +157,14 @@ If you use this repository in your research, please cite our paper:
 - **arXiv version:** [https://arxiv.org/abs/2503.16371](https://arxiv.org/abs/2503.16371)
 - **CPAIOR 2025:** TBA
 
+```
+@article{narita2025reinforcement,
+  title={Reinforcement Learning-based Heuristics to Guide Domain-Independent Dynamic Programming},
+  author={Narita, Minori and Kuroiwa, Ryo and Beck, J Christopher},
+  journal={arXiv preprint arXiv:2503.16371},
+  year={2025}
+}
+```
+
 ---
 
