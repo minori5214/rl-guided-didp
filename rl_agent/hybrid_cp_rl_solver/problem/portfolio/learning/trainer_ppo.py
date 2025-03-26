@@ -8,15 +8,14 @@ import sys
 
 import numpy as np
 import torch
-import dgl
 
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.environment.tsp import TSP
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.environment.environment import Environment
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.learning.brain_ppo import BrainPPO
+from rl_agent.hybrid_cp_rl_solver.problem.portfolio.environment.portfolio import Portfolio
+from rl_agent.hybrid_cp_rl_solver.problem.portfolio.environment.environment import Environment
+from rl_agent.hybrid_cp_rl_solver.problem.portfolio.learning.brain_ppo import BrainPPO
 from rl_agent.hybrid_cp_rl_solver.util.replay_memory import ReplayMemory
 
 #  definition of constants
-VALIDATION_SET_SIZE = 200
+VALIDATION_SET_SIZE = 100
 RANDOM_TRIAL = 100
 MIN_VAL = -1000000
 MAX_VAL = 1000000
@@ -24,7 +23,7 @@ MAX_VAL = 1000000
 
 class TrainerPPO:
     """
-    Definition of the Trainer PPO for the TSPTW
+    Definition of the Trainer PPO for the 4-moments Portfolio Optimization problem
     """
 
     def __init__(self, args):
@@ -35,16 +34,18 @@ class TrainerPPO:
 
         self.args = args
         np.random.seed(self.args.seed)
-        self.num_node_feats = 4
-        self.num_edge_feats = 5
-
+        self.n_feat = 9
+        self.moment_factors = [args.lambda_1, args.lambda_2, args.lambda_3, args.lambda_4]
         self.reward_scaling = 0.001
 
-        self.validation_set = TSP.generate_dataset(size=VALIDATION_SET_SIZE, n_city=self.args.n_city,
-                                                     grid_size=self.args.grid_size, is_integer_instance=False,
-                                                     seed=np.random.randint(10000))
+        self.validation_set = Portfolio.generate_dataset(size=VALIDATION_SET_SIZE,
+                                                         n_item=self.args.n_item, lb=0, ub=100,
+                                                         capacity_ratio=self.args.capacity_ratio,
+                                                         moment_factors=self.moment_factors,
+                                                         is_integer_instance=False,
+                                                         seed=np.random.randint(10000))
 
-        self.brain = BrainPPO(self.args, self.num_node_feats, self.num_edge_feats)
+        self.brain = BrainPPO(self.args, self.n_feat)
 
         self.memory = ReplayMemory()
 
@@ -52,8 +53,7 @@ class TrainerPPO:
 
         print("***********************************************************")
         print("[INFO] NUMBER OF FEATURES")
-        print("[INFO] n_node_feat: %d" % self.num_node_feats)
-        print("[INFO] n_edge_feat: %d" % self.num_edge_feats)
+        print("[INFO] n_feat: %d" % self.n_feat)
         print("***********************************************************")
 
     def run_training(self):
@@ -80,7 +80,7 @@ class TrainerPPO:
 
                 avg_reward = 0.0
                 for j in range(len(self.validation_set)):
-                    avg_reward += self.evaluate_instance(j)
+                    avg_reward += self.evaluate_instance(j) / self.reward_scaling
 
                 avg_reward = avg_reward / len(self.validation_set)
 
@@ -117,11 +117,14 @@ class TrainerPPO:
         """
 
         #  Generate a random instance
-        instance = TSP.generate_random_instance(n_city=self.args.n_city, grid_size=self.args.grid_size,
-                                                  seed=-1, is_integer_instance=False)
+        instance = Portfolio.generate_random_instance(n_item=self.args.n_item,
+                                                      lb=0, ub=100,
+                                                      capacity_ratio=self.args.capacity_ratio,
+                                                      moment_factors=self.moment_factors,
+                                                      is_integer_instance=False,
+                                                      seed=-1)
 
-        env = Environment(instance, self.num_node_feats, self.num_edge_feats, self.reward_scaling,
-                          self.args.grid_size)
+        env = Environment(instance, self.n_feat, self.reward_scaling, self.args.model)
 
         cur_state = env.get_initial_environment()
 
@@ -129,17 +132,17 @@ class TrainerPPO:
 
             self.time_step += 1
 
-            graph = env.make_nn_input(cur_state, self.args.mode)
+            nn_input = env.make_nn_input(cur_state, self.args.mode)
             avail = env.get_valid_actions(cur_state)
 
             available_tensor = torch.FloatTensor(avail)
 
-            out_action, log_prob_action, _ = self.brain.policy_old.act(graph, available_tensor)
+            out_action, log_prob_action, _ = self.brain.policy_old.act(nn_input, available_tensor)
 
             action = out_action.item()
             cur_state, reward = env.get_next_state_with_reward(cur_state, action)
 
-            self.memory.add_sample(graph, out_action, log_prob_action, reward, cur_state.is_done(), available_tensor)
+            self.memory.add_sample(nn_input, out_action, log_prob_action, reward, cur_state.is_done(), available_tensor)
 
             if self.time_step % self.args.update_timestep == 0:
                 self.brain.update(self.memory)
@@ -157,22 +160,19 @@ class TrainerPPO:
         """
 
         instance = self.validation_set[idx]
-        env = Environment(instance, self.num_node_feats, self.num_edge_feats, self.reward_scaling,
-                          self.args.grid_size)
+        env = Environment(instance, self.n_feat, self.reward_scaling, self.args.model)
         cur_state = env.get_initial_environment()
 
         total_reward = 0
 
         while True:
 
-            graph = env.make_nn_input(cur_state, self.args.mode)
+            nn_input = env.make_nn_input(cur_state, self.args.mode)
             avail = env.get_valid_actions(cur_state)
 
             available_tensor = torch.FloatTensor(avail)
 
-            batched_graph = dgl.batch([graph, ])
-
-            out_action, _, _ = self.brain.policy_old.act(batched_graph, available_tensor)
+            out_action, _, _ = self.brain.policy_old.act(nn_input, available_tensor)
 
             action = out_action.item()
 

@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 import dgl
 
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.learning.actor_critic import ActorCritic
+from rl_agent.hybrid_cp_rl_solver.problem.tsptw.learning.actor_critic import ActorCritic
 
 
 class BrainPPO:

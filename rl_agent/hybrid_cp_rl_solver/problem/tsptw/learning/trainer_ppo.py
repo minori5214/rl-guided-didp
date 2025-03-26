@@ -10,13 +10,13 @@ import numpy as np
 import torch
 import dgl
 
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.environment.tsp import TSP
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.environment.environment import Environment
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.learning.brain_ppo import BrainPPO
+from rl_agent.hybrid_cp_rl_solver.problem.tsptw.environment.tsptw import TSPTW
+from rl_agent.hybrid_cp_rl_solver.problem.tsptw.environment.environment import Environment
+from rl_agent.hybrid_cp_rl_solver.problem.tsptw.learning.brain_ppo import BrainPPO
 from rl_agent.hybrid_cp_rl_solver.util.replay_memory import ReplayMemory
 
 #  definition of constants
-VALIDATION_SET_SIZE = 200
+VALIDATION_SET_SIZE = 100
 RANDOM_TRIAL = 100
 MIN_VAL = -1000000
 MAX_VAL = 1000000
@@ -35,13 +35,15 @@ class TrainerPPO:
 
         self.args = args
         np.random.seed(self.args.seed)
-        self.num_node_feats = 4
+        self.num_node_feats = 6
         self.num_edge_feats = 5
+        self.max_tw_value = (self.args.n_city - 1) * (self.args.max_tw_size + self.args.max_tw_gap)
 
         self.reward_scaling = 0.001
 
-        self.validation_set = TSP.generate_dataset(size=VALIDATION_SET_SIZE, n_city=self.args.n_city,
-                                                     grid_size=self.args.grid_size, is_integer_instance=False,
+        self.validation_set = TSPTW.generate_dataset(size=VALIDATION_SET_SIZE, n_city=self.args.n_city,
+                                                     grid_size=self.args.grid_size, max_tw_gap=self.args.max_tw_gap,
+                                                     max_tw_size=self.args.max_tw_size, is_integer_instance=False,
                                                      seed=np.random.randint(10000))
 
         self.brain = BrainPPO(self.args, self.num_node_feats, self.num_edge_feats)
@@ -117,11 +119,12 @@ class TrainerPPO:
         """
 
         #  Generate a random instance
-        instance = TSP.generate_random_instance(n_city=self.args.n_city, grid_size=self.args.grid_size,
+        instance = TSPTW.generate_random_instance(n_city=self.args.n_city, grid_size=self.args.grid_size,
+                                                  max_tw_gap=self.args.max_tw_gap, max_tw_size=self.args.max_tw_size,
                                                   seed=-1, is_integer_instance=False)
 
         env = Environment(instance, self.num_node_feats, self.num_edge_feats, self.reward_scaling,
-                          self.args.grid_size)
+                          self.args.grid_size, self.max_tw_value)
 
         cur_state = env.get_initial_environment()
 
@@ -158,7 +161,7 @@ class TrainerPPO:
 
         instance = self.validation_set[idx]
         env = Environment(instance, self.num_node_feats, self.num_edge_feats, self.reward_scaling,
-                          self.args.grid_size)
+                          self.args.grid_size, self.max_tw_value)
         cur_state = env.get_initial_environment()
 
         total_reward = 0

@@ -6,17 +6,19 @@ import numpy as np
 
 class Environment:
 
-    def __init__(self, instance, n_feat, reward_scaling):
+    def __init__(self, instance, n_feat, reward_scaling, model='narita'):
         """
         Initialize the DP/RL environment
         :param instance: a 4-moment portfolio instance
         :param n_feat: number of features for each item
         :param reward_scaling: value for scaling the reward
+        :param model: the DP model name
         """
 
         self.instance = instance
         self.reward_scaling = reward_scaling
         self.n_feat = n_feat
+        self.model = model
 
         self.weigth_norm = np.linalg.norm(self.instance.weights)
         self.mean_norm = np.linalg.norm(self.instance.means)

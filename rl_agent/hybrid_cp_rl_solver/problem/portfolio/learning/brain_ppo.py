@@ -4,28 +4,28 @@ import os
 
 import torch
 import torch.nn as nn
-import dgl
 
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.learning.actor_critic import ActorCritic
+from rl_agent.hybrid_cp_rl_solver.problem.portfolio.learning.actor_critic import ActorCritic
 
 
 class BrainPPO:
     """
     Definition of the PPO Brain, computing the DQN loss
     """
-    def __init__(self, args, num_node_feat, num_edge_feat):
+    def __init__(self, args, n_feat):
         """
         Initialize the PPO Brain
         :param args: argparse object taking hyperparameters
-        :param num_node_feat: number of features on the nodes
-        :param num_edge_feat: number of features on the edges
+        :param n_feat: number of features on the items
         """
         self.args = args
-        self.policy = ActorCritic(self.args, num_node_feat, num_edge_feat)
-        self.policy_old = ActorCritic(self.args, num_node_feat, num_edge_feat)
+        self.policy = ActorCritic(self.args, n_feat)
+        self.policy_old = ActorCritic(self.args, n_feat)
         self.policy_old.load_state_dict(self.policy.state_dict())
 
-        self.optimizer = torch.optim.Adam(self.policy.parameters(), lr=args.learning_rate)
+        print("weight decay", args.weight_decay)
+        self.optimizer = torch.optim.Adam(self.policy.parameters(), lr=args.learning_rate,
+                                          weight_decay=args.weight_decay)
         self.MseLoss = nn.MSELoss()
 
         if args.mode == 'gpu':
@@ -62,14 +62,16 @@ class BrainPPO:
                 start_idx = j * self.args.batch_size
                 end_idx = (j + 1) * self.args.batch_size - 1
 
-                old_states_for_action = dgl.batch(mem_states[start_idx:end_idx])
-                old_states_for_value = dgl.batch(mem_states[start_idx:end_idx])
+                old_states_for_action = torch.stack(mem_states[start_idx:end_idx])
+                old_states_for_value = torch.stack(mem_states[start_idx:end_idx])
                 old_actions = torch.stack(mem_actions[start_idx:end_idx])
                 old_log_probs = torch.stack(mem_log_probs[start_idx:end_idx])
                 old_availables = torch.stack(mem_availables[start_idx:end_idx])
                 rewards_tensor = torch.tensor(mem_rewards[start_idx:end_idx])
 
                 if self.args.mode == 'gpu':
+                    old_states_for_action.cuda()
+                    old_states_for_value.cuda()
                     old_actions = old_actions.cuda()
                     old_log_probs = old_log_probs.cuda()
                     old_availables = old_availables.cuda()
@@ -90,14 +92,12 @@ class BrainPPO:
                 surrogate_1 = ratios * advantages
                 surrogate_2 = torch.clamp(ratios, 1 - self.args.eps_clip, 1 + self.args.eps_clip) * advantages
 
-                loss = - torch.min(surrogate_1, surrogate_2) \
-                       + 0.5 * self.MseLoss(state_values.float(), rewards_tensor.float()) \
+                loss = - torch.min(surrogate_1, surrogate_2) + 0.5 * self.MseLoss(state_values, rewards_tensor) \
                        - self.args.entropy_value * dist_entropy
 
                 self.optimizer.zero_grad()
 
                 loss.mean().backward()
-
 
                 self.optimizer.step()
 

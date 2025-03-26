@@ -8,18 +8,15 @@ import time
 import sys
 
 import numpy as np
+import torch
 
-import dgl
-
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.environment.environment import Environment
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.learning.brain_dqn import BrainDQN
-from rl_agent.hybrid_cp_rl_solver.problem.tsp.environment.tsp import TSP
+from rl_agent.hybrid_cp_rl_solver.problem.portfolio.environment.environment import Environment
+from rl_agent.hybrid_cp_rl_solver.problem.portfolio.learning.brain_dqn import BrainDQN
+from rl_agent.hybrid_cp_rl_solver.problem.portfolio.environment.portfolio import Portfolio
 from rl_agent.hybrid_cp_rl_solver.util.prioritized_replay_memory import PrioritizedReplayMemory
 
-import os
-
 #  definition of constants
-MEMORY_CAPACITY = 50000
+MEMORY_CAPACITY = 300000
 GAMMA = 1
 STEP_EPSILON = 5000.0
 UPDATE_TARGET_FREQUENCY = 500
@@ -32,7 +29,7 @@ MAX_VAL = 1000000
 
 class TrainerDQN:
     """
-    Definition of the Trainer DQN for the TSPTW
+    Definition of the Trainer DQN for the 4-moment portfolio problem
     """
 
     def __init__(self, args):
@@ -43,38 +40,37 @@ class TrainerDQN:
 
         self.args = args
         np.random.seed(self.args.seed)
-        self.instance_size = self.args.n_city
-        self.n_action = self.instance_size - 1  # Because we begin at a given city, so we have 1 city less to visit
+        self.n_action = 2 # inserting the current item or not
 
-        self.num_node_feats = 4 # no time windows so 4
-        self.num_edge_feats = 5
-
+        self.n_feat = 9
+        self.moment_factors = [args.lambda_1, args.lambda_2, args.lambda_3, args.lambda_4]
         self.reward_scaling = 0.001
 
-        self.validation_set = TSP.generate_dataset(size=VALIDATION_SET_SIZE, n_city=self.args.n_city,
-                                                     grid_size=self.args.grid_size, is_integer_instance=False,
-                                                     seed=np.random.randint(10000))
-
-        self.brain = BrainDQN(self.args, self.num_node_feats, self.num_edge_feats)
+        self.validation_set = Portfolio.generate_dataset(size=VALIDATION_SET_SIZE,
+                                                         n_item=self.args.n_item, lb=0, ub=100,
+                                                         capacity_ratio=self.args.capacity_ratio,
+                                                         moment_factors=self.moment_factors,
+                                                         is_integer_instance=False,
+                                                         seed=np.random.randint(10000))
+        self.brain = BrainDQN(self.args, self.n_feat)
         self.memory = PrioritizedReplayMemory(MEMORY_CAPACITY)
 
         self.steps_done = 0
         self.init_memory_counter = 0
 
         if args.n_step == -1: # We go until the end of the episode
-            self.n_step = self.n_action
+            self.n_step = self.args.n_item
         else:
             self.n_step = self.args.n_step
-
+        
         print("***********************************************************")
         print("[INFO] NUMBER OF FEATURES")
-        print("[INFO] n_node_feat: %d" % self.num_node_feats)
-        print("[INFO] n_edge_feat: %d" % self.num_edge_feats)
+        print("[INFO] n_feat: %d" % self.n_feat)
         print("***********************************************************")
 
     def run_training(self):
         """
-        Run de main loop for training the model
+        Run the main loop for training the model
         """
 
         start_time = time.time()
@@ -82,11 +78,10 @@ class TrainerDQN:
         if self.args.plot_training:
             iter_list = []
             reward_list = []
-            loss_list = []
 
         self.initialize_memory()
 
-        print('[INFO]', 'iter', 'time', 'avg_reward_learning', 'loss', "beta")
+        print('[INFO]', 'iter', 'time', 'avg_reward', 'avg_profit', 'loss', "beta")
 
         cur_best_reward = MIN_VAL
 
@@ -102,14 +97,18 @@ class TrainerDQN:
             if (i % 10 == 0 and i < 101) or i % 100 == 0:
 
                 avg_reward = 0.0
+                avg_profit = 0.0
                 for j in range(len(self.validation_set)):
-                    avg_reward += self.evaluate_instance(j)
+                    total_reward, total_profit = self.evaluate_instance(j)
+                    avg_reward += total_reward / self.reward_scaling
+                    avg_profit += total_profit
 
                 avg_reward = avg_reward / len(self.validation_set)
+                avg_profit = avg_profit / len(self.validation_set)
 
                 cur_time = round(time.time() - start_time, 2)
 
-                print('[DATA]', i, cur_time, avg_reward, loss, beta)
+                print('[DATA]', i, cur_time, avg_reward, avg_profit, loss, beta)
 
                 sys.stdout.flush()
 
@@ -123,22 +122,6 @@ class TrainerDQN:
                     plt.legend(loc=3)
                     out_file = '%s/training_curve_reward.png' % self.args.save_dir
                     plt.savefig(out_file)
-
-                    loss_list.append(loss)
-                    plt.clf()
-
-                    plt.plot(iter_list, loss_list, linestyle="-", label="DQN", color='y')
-
-                    plt.legend(loc=3)
-                    out_file = '%s/training_curve_loss.png' % self.args.save_dir
-                    plt.savefig(out_file)
-
-                    # Add the new loss and avg reward to the csv file
-                    with open('%s/training_curve.csv' % self.args.save_dir, 'a') as f:
-                        # If the file is empty, we add the header
-                        if os.stat('%s/training_curve.csv' % self.args.save_dir).st_size == 0:
-                            f.write("iter,avg_reward,loss\n")
-                        f.write("%d,%f,%f\n" % (i, avg_reward, loss))
 
                 fn = "iter_%d_model.pth.tar" % i
 
@@ -170,21 +153,24 @@ class TrainerDQN:
         """
 
         #  Generate a random instance
-        instance = TSP.generate_random_instance(n_city=self.args.n_city, grid_size=self.args.grid_size,
-                                                  seed=-1, is_integer_instance=False)
+        instance = Portfolio.generate_random_instance(n_item=self.args.n_item,
+                                                      lb=0, ub=100,
+                                                      capacity_ratio=self.args.capacity_ratio,
+                                                      moment_factors=self.moment_factors,
+                                                      is_integer_instance=False,
+                                                      seed=-1)
 
-        env = Environment(instance, self.num_node_feats, self.num_edge_feats, self.reward_scaling,
-                          self.args.grid_size)
+        env = Environment(instance, self.n_feat, self.reward_scaling, self.args.model)
+        total_loss = 0
 
         cur_state = env.get_initial_environment()
 
-        graph_list = [dgl.DGLGraph()] * self.n_action
-        rewards_vector = np.zeros(self.n_action)
-        actions_vector = np.zeros(self.n_action, dtype=np.int16)
-        available_vector = np.zeros((self.n_action, self.args.n_city))
+        set_list = []
+        rewards_vector = np.zeros(self.args.n_item)
+        actions_vector = np.zeros(self.args.n_item, dtype=np.int16)
+        available_vector = np.zeros((self.args.n_item, self.n_action))
 
         idx = 0
-        total_loss = 0
 
         #  the current temperature for the softmax selection: increase from 0 to MAX_BETA
         temperature = max(0., min(self.args.max_softmax_beta,
@@ -193,14 +179,14 @@ class TrainerDQN:
         #  execute the episode
         while True:
 
-            graph = env.make_nn_input(cur_state, self.args.mode)
+            nn_input = env.make_nn_input(cur_state, self.args.mode)
             avail = env.get_valid_actions(cur_state)
             avail_idx = np.argwhere(avail == 1).reshape(-1)
 
             if memory_initialization:  # if we are in the memory initialization phase, a random episode is selected
                 action = random.choice(avail_idx)
             else:  # otherwise, we do the softmax selection
-                action = self.soft_select_action(graph, avail, temperature)
+                action = self.soft_select_action(nn_input, avail, temperature)
 
                 #  each time we do a step, we increase the counter, and we periodically synchronize the target network
                 self.steps_done += 1
@@ -209,7 +195,7 @@ class TrainerDQN:
 
             cur_state, reward = env.get_next_state_with_reward(cur_state, action)
 
-            graph_list[idx] = graph
+            set_list.append(nn_input)
             rewards_vector[idx] = reward
             actions_vector[idx] = action
             available_vector[idx] = avail
@@ -222,25 +208,29 @@ class TrainerDQN:
         episode_last_idx = idx
 
         #  compute the n-step values
-        for i in range(self.n_action):
+        for i in range(self.args.n_item):
 
             if i <= episode_last_idx:
-                cur_graph = graph_list[i]
+                cur_set = set_list[i]
                 cur_available = available_vector[i]
             else:
-                cur_graph = graph_list[episode_last_idx]
+                cur_set = set_list[episode_last_idx]
                 cur_available = available_vector[episode_last_idx]
 
-            if i + self.n_step < self.n_action:
-                next_graph = graph_list[i + self.n_step]
+            if i + self.n_step < self.args.n_item:
+                next_set = set_list[i + self.n_step]
+                
                 next_available = available_vector[i + self.n_step]
             else:
-                next_graph = dgl.DGLGraph()
+                next_set = torch.FloatTensor(np.zeros((self.args.n_item, self.n_feat)))
                 next_available = env.get_valid_actions(cur_state)
 
+                if self.args.mode == 'gpu':
+                    next_set = next_set.cuda()
+
             #  a state correspond to the graph, with the nodes that we can still visit
-            state_features = (cur_graph, cur_available)
-            next_state_features = (next_graph, next_available)
+            state_features = (cur_set, cur_available)
+            next_state_features = (next_set, next_available)
 
             #  the n-step reward
             reward = sum(rewards_vector[i:i+self.n_step])
@@ -271,18 +261,22 @@ class TrainerDQN:
         """
 
         instance = self.validation_set[idx]
-        env = Environment(instance, self.num_node_feats, self.num_edge_feats, self.reward_scaling,
-                          self.args.grid_size)
+        env = Environment(instance, self.n_feat, self.reward_scaling, self.args.model)
         cur_state = env.get_initial_environment()
 
         total_reward = 0
+        solution = []
 
         while True:
-            graph = env.make_nn_input(cur_state, self.args.mode)
+            #if idx == 0: print("cur state", cur_state.weight, cur_state.stage, cur_state.available_action)
+            nn_input = env.make_nn_input(cur_state, self.args.mode)
 
             avail = env.get_valid_actions(cur_state)
+            #if idx == 0: print("avail", avail)
 
-            action = self.select_action(graph, avail)
+            action = self.select_action(nn_input, avail, idx=idx)
+            solution.append(action)
+            #if idx == 0: print("action", action)
 
             cur_state, reward = env.get_next_state_with_reward(cur_state, action)
 
@@ -290,43 +284,77 @@ class TrainerDQN:
 
             if cur_state.is_done():
                 break
+        #if idx == 0: print("total_profit", total_reward * env.reward_scaling)
+       # if idx == 0: print("")
+        #print("idx={}, solution={}".format(idx, solution))
+        total_mean = sum([solution[i] * instance.means[i]
+                            for i in range(instance.n_item)])
 
-        return total_reward
+        total_deviation = sum([solution[i] * instance.deviations[i]
+                            for i in range(instance.n_item)]) ** (1 / 2)
 
-    def select_action(self, graph, available):
+        total_skewness = sum([solution[i] * instance.skewnesses[i]
+                            for i in range(instance.n_item)]) ** (1 / 3)
+
+        total_kurtosis = sum([solution[i] * instance.kurtosis[i]
+                            for i in range(instance.n_item)]) ** (1 / 4)
+
+        total_profit =  instance.moment_factors[0] * total_mean \
+                - instance.moment_factors[1] * total_deviation \
+                + instance.moment_factors[2] * total_skewness \
+                - instance.moment_factors[3] * total_kurtosis
+
+        return total_reward, total_profit
+
+    def select_action(self, set_input, available, idx=100):
         """
         Select an action according the to the current model
-        :param graph: the graph (first part of the state)
+        :param set_input: the featurized set of item (first part of the state)
         :param available: the vector of available (second part of the state)
         :return: the action, following the greedy policy with the model prediction
         """
 
-        batched_graph = dgl.batch([graph, ])
+        batched_set = set_input.unsqueeze(0)
         available = available.astype(bool)
-        out = self.brain.predict(batched_graph, target=False)[0].reshape(-1)
+        out = self.brain.predict(batched_set, target=False).squeeze(0)
+        #if idx == 0: print("out", out)
 
         action_idx = np.argmax(out[available])
+        #if idx == 0: print("action_idx", action_idx)
 
         action = np.arange(len(out))[available][action_idx]
+        #if idx == 0: print("action", action)
 
         return action
 
-    def soft_select_action(self, graph, available, beta):
+    def soft_select_action(self, set_input, available, beta):
         """
         Select an action according the to the current model with a softmax selection of temperature beta
-        :param graph: the graph (first part of the state)
+        :param set_input: the featurized set of item (first part of the state)
         :param available: the vector of available (second part of the state)
         :param beta: the current temperature
         :return: the action, following the softmax selection with the model prediction
         """
 
-        batched_graph = dgl.batch([graph, ])
+        batched_set = set_input.unsqueeze(0)
         available = available.astype(bool)
-        out = self.brain.predict(batched_graph, target=False)[0].reshape(-1)
+        out = self.brain.predict(batched_set, target=False)[0].reshape(-1)
 
         if len(out[available]) > 1:
             logits = (out[available] - out[available].mean())
             div = ((logits ** 2).sum() / (len(logits) - 1)) ** 0.5
+
+            if np.all(logits == 0.0):
+                action_idx = np.random.choice(np.arange(len(logits)))
+                action = np.arange(len(out))[available][action_idx]
+                print("set_input", set_input)
+                print("out", out)
+                print("available", available)
+                print("logits", logits)
+                print("div", div)
+                print(logits / div)
+
+                return action
             logits = logits / div
 
             probabilities = np.exp(beta * logits)
@@ -341,12 +369,6 @@ class TrainerDQN:
         else:
             probabilities = [1]
 
-        if np.isnan(probabilities).any():
-            print("NAN contained!", probabilities, logits, div, out[available])
-            action_idx = np.argmax(logits)
-            action = np.arange(len(out))[available][action_idx]
-            return action
-
         action_idx = np.random.choice(np.arange(len(probabilities)), p=probabilities)
         action = np.arange(len(out))[available][action_idx]
         return action
@@ -359,19 +381,18 @@ class TrainerDQN:
         """
 
         batch_len = len(batch)
-        graph, avail = list(zip(*[e[1][0] for e in batch]))
+        set_input, avail = list(zip(*[e[1][0] for e in batch]))
 
-        graph_batch = dgl.batch(graph)
+        set_batch = torch.stack(set_input)
 
-        next_graph, next_avail = list(zip(*[e[1][3] for e in batch]))
-        next_graph_batch = dgl.batch(next_graph)
-        next_copy_graph_batch = dgl.batch(dgl.unbatch(next_graph_batch))
-        p = self.brain.predict(graph_batch, target=False)
+        next_set_input, next_avail = list(zip(*[e[1][3] for e in batch]))
+        next_set_batch = torch.stack(next_set_input)
 
-        if next_graph_batch.number_of_nodes() > 0:
 
-            p_ = self.brain.predict(next_graph_batch, target=False)
-            p_target_ = self.brain.predict(next_copy_graph_batch, target=True)
+        p = self.brain.predict(set_batch, target=False)
+
+        p_ = self.brain.predict(next_set_batch, target=False)
+        p_target_ = self.brain.predict(next_set_batch,  target=True)
 
         x = []
         y = []
@@ -380,17 +401,16 @@ class TrainerDQN:
         for i in range(batch_len):
 
             sample = batch[i][1]
-            state_graph, state_avail = sample[0]
+            state_set, state_avail = sample[0]
             action = sample[1]
             reward = sample[2]
-            next_state_graph, next_state_avail = sample[3]
+            _, next_state_avail = sample[3]
             next_action_indices = np.argwhere(next_state_avail == 1).reshape(-1)
             t = p[i]
 
             q_value_prediction = t[action]
 
-            if len(next_action_indices) == 0: # always comes to this case (because n_step == n_action)
-
+            if len(next_action_indices) == 0:
                 td_q_value = reward
                 t[action] = td_q_value
 
@@ -405,7 +425,7 @@ class TrainerDQN:
                 td_q_value = reward + GAMMA * p_target_[i][best_valid_next_action]
                 t[action] = td_q_value
 
-            state = (state_graph, state_avail)
+            state = (state_set, state_avail)
             x.append(state)
             y.append(t)
 

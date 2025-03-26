@@ -120,11 +120,8 @@ class ActorCritic(nn.Module):
             if not memory_efficient:
                 # To limit numerical errors from large vector elements outside the mask, we zero these out.
                 result = torch.nn.functional.softmax((vector/temperature) * mask, dim=dim)
-
-                result = result.masked_fill((1 - mask).bool(), np.nan)              
-
-                #result = result * mask
-                result = result / (result.nansum(dim=dim, keepdim=True) + 1e-13)
+                result = result * mask
+                result = result / (result.sum(dim=dim, keepdim=True) + 1e-13)
             else:
                 masked_vector = vector.masked_fill((1 - mask).byte(), mask_fill_value)
                 result = torch.nn.functional.softmax(masked_vector/temperature, dim=dim)

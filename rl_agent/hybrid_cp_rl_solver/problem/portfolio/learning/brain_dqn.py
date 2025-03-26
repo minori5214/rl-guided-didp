@@ -5,9 +5,8 @@ import torch.nn.functional as F
 
 import os
 import numpy as np
-import dgl
 
-from rl_agent.hybrid_cp_rl_solver.architecture.graph_attention_network import GATNetwork
+from rl_agent.hybrid_cp_rl_solver.architecture.set_transformer import SetTransformer
 
 
 class BrainDQN:
@@ -15,25 +14,21 @@ class BrainDQN:
     Definition of the DQN Brain, computing the DQN loss
     """
 
-    def __init__(self, args, num_node_feat, num_edge_feat):
+    def __init__(self, args, n_feat):
         """
         Initialization of the DQN Brain
         :param args: argparse object taking hyperparameters
-        :param num_node_feat: number of features on the nodes
-        :param num_edge_feat: number of features on the edges
+        :param n_feat: number of features on the items
         """
 
         self.args = args
 
-        self.embedding = [(num_node_feat, num_edge_feat),
-                         (self.args.latent_dim, self.args.latent_dim),
-                         (self.args.latent_dim, self.args.latent_dim),
-                         (self.args.latent_dim, self.args.latent_dim)]
+        self.model = SetTransformer(dim_hidden=args.latent_dim, dim_input=n_feat, dim_output=2)
+        self.target_model = SetTransformer(dim_hidden=args.latent_dim, dim_input=n_feat, dim_output=2)
 
-        self.model = GATNetwork(self.embedding, self.args.hidden_layer, self.args.latent_dim, 1)
-        self.target_model = GATNetwork(self.embedding, self.args.hidden_layer, self.args.latent_dim, 1)
-
-        self.optimizer = optim.Adam(self.model.parameters(), lr=self.args.learning_rate)
+        print("weight decay", args.weight_decay)
+        self.optimizer = optim.Adam(self.model.parameters(), lr=self.args.learning_rate, 
+                                    weight_decay=args.weight_decay)
 
         if self.args.mode == 'gpu':
             self.model.cuda()
@@ -49,41 +44,40 @@ class BrainDQN:
 
         self.model.train()
 
-        graph, _ = list(zip(*x))
-        graph_batch = dgl.batch(graph)
-        y_pred = self.model(graph_batch, graph_pooling=False)
-        y_pred = torch.stack([g.ndata["n_feat"] for g in dgl.unbatch(y_pred)]).squeeze(dim=2)
+        set_input, _ = list(zip(*x))
+        batched_set = torch.stack(set_input)
+
+        y_pred = self.model(batched_set)
         y_tensor = torch.FloatTensor(np.array(y))
 
         if self.args.mode == 'gpu':
             y_tensor = y_tensor.contiguous().cuda()
 
         loss = F.smooth_l1_loss(y_pred, y_tensor)
-        #loss *= y_pred.shape[1] # Issue fixed; multiply by the batch size to make it back to the original scale
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
 
         return loss.item()
 
-    def predict(self, graph, target):
+    def predict(self, nn_input, target):
         """
-        Predict the Q-values using the current graph, either using the model or the target model
-        :param graph: the graph serving as input
+        Predict the Q-values using the current state, either using the model or the target model
+        :param nn_input: the featurized state
         :param target: True is the target network must be used for the prediction
         :return: A list of the predictions for each node
         """
 
         with torch.no_grad():
+
             if target:
                 self.target_model.eval()
-                res = self.target_model(graph, graph_pooling=False)
+                res = self.target_model(nn_input)
             else:
                 self.model.eval()
-                res = self.model(graph, graph_pooling=False)
+                res = self.model(nn_input)
 
-        res = dgl.unbatch(res)
-        return [r.ndata["n_feat"].data.cpu().numpy().flatten() for r in res]
+        return res.cpu().numpy()
 
     def update_target_model(self):
         """
