@@ -62,12 +62,6 @@ Install `didppy` from the locally built wheel file:
 pip install ../target/wheels/didppy-0.7.2-cp37-abi3-linux_x86_64.whl
 ```
 
-After installation, deactivate the environment:
-
-```sh
-deactivate
-```
-
 Move back to the root directory:
 
 ```sh
