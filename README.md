@@ -12,6 +12,7 @@ Please note that `rl_agent/hybrid_cp_rl_solver` is a clone of hybrid-cp-rl-solve
 Ensure you have Python 3.12 and Rust installed. Then, build the Rust project in release mode:
 
 ```sh
+cd didp-rs-dev
 cargo build --release
 ```
 
