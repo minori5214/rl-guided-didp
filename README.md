@@ -133,17 +133,20 @@ If no GPU is detected, the training will automatically run on the CPU.
 #### TSP
 ```
 ./solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
+./solve_tsp.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
 ```
 
 
 #### TSPTW
 ```
 ./solve_tsptw.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
+./solve_tsptw.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
 ```
 
 #### Portfolio
 ```
 ./solve_portfolio.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
+./solve_portfolio.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
 ```
 
 ## Citation
