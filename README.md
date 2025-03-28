@@ -8,6 +8,8 @@ Please note that `rl_agent/hybrid_cp_rl_solver` is a clone of hybrid-cp-rl-solve
 
 ## Installation
 
+## WSL or Linux
+
 ### 1. Build the Rust Component
 Ensure you have Python 3.12 and Rust installed. Then, build the Rust project in release mode:
 
@@ -110,6 +112,69 @@ After installation, deactivate the environment:
 deactivate
 ```
 
+## Mac
+
+### 1. Build the Rust Component
+Ensure you have Python 3.10 and Rust installed. Then, build the Rust project in release mode:
+
+```sh
+brew install python@3.10
+cd didp-rs-dev
+cargo build --release
+```
+
+### 2. Build the Python Package
+Move into the `didppy` directory and set up a virtual environment using Python 3.10:
+
+```sh
+cd didppy
+python3.10 -m venv .venv
+source .venv/bin/activate
+```
+
+Install `maturin` and build `didppy`:
+
+```sh
+python3.10 -m pip install maturin
+maturin build --release --manylinux off
+```
+
+Deactivate the virtual environment:
+
+```sh
+deactivate
+```
+
+### 3. Install the `didppy` Package
+Create another virtual environment and install `didppy`:
+
+```sh
+python3.10 -m venv didppy-release
+source didppy-release/bin/activate
+pip install ../target/wheels/didppy-0.7.2-cp37-abi3-macosx_11_0_arm64.whl
+```
+
+Move back to the root directory:
+
+```sh
+cd ../../
+```
+
+### 4. Install Dependencies
+### Install PyTorch and DGL (Deep Graph Library) (CPU only)
+Install the CPU-only versions:
+
+```sh
+pip install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1
+pip install dgl==1.1.2 -f https://data.dgl.ai/wheels/repo.html
+pip install -r requirements_mac_cpu.txt
+```
+
+After installation, deactivate the environment:
+
+```sh
+deactivate
+```
 
 ## Usage
 
