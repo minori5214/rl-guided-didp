@@ -191,6 +191,8 @@ If no GPU is detected, the training will automatically run on the CPU.
 ```sh
 ./run_training_dqn_tsp.sh # DQN
 ./run_training_dqn_tsp.sh # PPO
+
+bash run_training_dqn_tsp.sh # MAC OS
 ```
 
 ### 3. Solve instances
@@ -199,6 +201,9 @@ If no GPU is detected, the training will automatically run on the CPU.
 ```
 ./solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
 ./solve_tsp.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
+
+bash solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS # MAC OS
+
 ```
 
 
