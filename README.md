@@ -71,7 +71,7 @@ cd ../../
 ```
 
 ### 4. Install Dependencies
-### Install PyTorch and DGL (Deep Graph Library) (GPU version)
+### Install PyTorch and DGL (Deep Graph Library: https://www.dgl.ai/) (GPU version)
 If using a GPU, install PyTorch with CUDA 11.8 support:
 
 ```sh
