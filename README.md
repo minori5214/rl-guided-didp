@@ -197,12 +197,14 @@ bash run_training_dqn_tsp.sh # MAC OS
 
 ### 3. Solve instances
 
+On macOS, `resource.setrlimit` does not work for limiting memory usage, so the shell script does not set a memory limit.
+
 #### TSP
 ```
 ./solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
 ./solve_tsp.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
 
-bash solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS # MAC OS
+bash solve_tsp_mac.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS # MAC OS
 
 ```
 
@@ -211,12 +213,16 @@ bash solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS #
 ```
 ./solve_tsptw.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
 ./solve_tsptw.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
+
+bash solve_tsptw_mac.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS # MAC OS
 ```
 
 #### Portfolio
 ```
 ./solve_portfolio.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
 ./solve_portfolio.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
+
+bash solve_portfolio_mac.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS # MAC OS
 ```
 
 ## Citation
