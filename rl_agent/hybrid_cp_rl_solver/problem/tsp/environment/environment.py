@@ -40,7 +40,7 @@ class Environment:
 
         return State(self.instance, must_visit, last_visited, cur_tour)
 
-    def make_nn_input(self, cur_state, mode):
+    def make_nn_input(self, cur_state, device='cpu'):
         """
         Return a DGL graph serving as input of the neural network. Assign features on the nodes and on the edges
         :param cur_state: the current state of the DP model
@@ -62,7 +62,7 @@ class Environment:
         g.ndata['n_feat'] = node_feat_tensor
         g.edata['e_feat'] = self.edge_feat_tensor
 
-        if mode == 'gpu':
+        if device == 'cuda':
             # get the device
             g = g.to(torch.device('cuda'))
             g.ndata['n_feat'] = g.ndata['n_feat'].cuda()

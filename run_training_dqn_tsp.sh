@@ -4,11 +4,11 @@
 seed=2
 
 # Characterics of the training instances
-n_city=20
+n_city=50
 grid_size=100
 
 # Parameters for the training
-batch_size=256 # max batch size for training/testing # 256
+batch_size=128 # max batch size for training/testing # 256
 hidden_layer=3 # number of hidden layer # 3
 latent_dim=64 # 64
 learning_rate=0.0001
@@ -18,6 +18,7 @@ max_softmax_beta=2
 # Others
 plot_training=1 # Boolean value: plot the training curve or not
 mode=gpu # cpu or gpu
+onnx=1
 
 # Folder to save the trained model
 network_arch=hidden_layer-$hidden_layer-latent_dim-$latent_dim/
@@ -43,6 +44,7 @@ python rl_agent/hybrid_cp_rl_solver/problem/tsp/main_training_dqn_tsp.py \
     --plot_training $plot_training  \
     --mode $mode \
     --n_step $n_step \
+    --onnx $onnx \
     2>&1 | tee $save_dir/log-training.txt
 
 

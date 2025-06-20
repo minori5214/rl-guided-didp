@@ -303,7 +303,11 @@ class TrainerDQN:
 
         batched_graph = dgl.batch([graph, ])
         available = available.astype(bool)
-        out = self.brain.predict(batched_graph, target=False)[0].reshape(-1)
+
+        if self.args.onnx:
+            out = self.brain.predict_onnx(batched_graph, target=False)[0].reshape(-1)
+        else:
+            out = self.brain.predict(batched_graph, target=False)[0].reshape(-1)
 
         action_idx = np.argmax(out[available])
 
@@ -322,8 +326,12 @@ class TrainerDQN:
 
         batched_graph = dgl.batch([graph, ])
         available = available.astype(bool)
-        out = self.brain.predict(batched_graph, target=False)[0].reshape(-1)
 
+        if self.args.onnx:
+            out = self.brain.predict_onnx(batched_graph, target=False)[0].reshape(-1)
+        else:
+            out = self.brain.predict(batched_graph, target=False)[0].reshape(-1)
+        
         if len(out[available]) > 1:
             logits = (out[available] - out[available].mean())
             div = ((logits ** 2).sum() / (len(logits) - 1)) ** 0.5
@@ -366,12 +374,24 @@ class TrainerDQN:
         next_graph, next_avail = list(zip(*[e[1][3] for e in batch]))
         next_graph_batch = dgl.batch(next_graph)
         next_copy_graph_batch = dgl.batch(dgl.unbatch(next_graph_batch))
-        p = self.brain.predict(graph_batch, target=False)
+
+        if self.args.onnx:
+            p = self.brain.predict_onnx(graph_batch, target=False)
+        else:
+            p = self.brain.predict(graph_batch, target=False)
 
         if next_graph_batch.number_of_nodes() > 0:
 
-            p_ = self.brain.predict(next_graph_batch, target=False)
-            p_target_ = self.brain.predict(next_copy_graph_batch, target=True)
+            if self.args.onnx:
+                p_ = self.brain.predict_onnx(next_graph_batch, target=False)
+                p_target_ = self.brain.predict_onnx(next_copy_graph_batch, target=True)
+            else:
+                p_ = self.brain.predict(next_graph_batch, target=False)
+                p_target_ = self.brain.predict(next_copy_graph_batch, target=True)
+        
+        #print("chlechie1", p, batch_len)
+        #print("chlechie2", p.shape)
+        #print("chlechie3", type(p))
 
         x = []
         y = []
@@ -428,7 +448,10 @@ class TrainerDQN:
             idx = batch[i][0]
             self.memory.update(idx, errors[i])
 
-        loss = self.brain.train(x, y)
+        if self.args.onnx:
+            loss = self.brain.train_onnx(x, y)
+        else:
+            loss = self.brain.train(x, y)
 
         return round(loss, 4)
 

@@ -6,6 +6,7 @@ from torch.distributions import Categorical
 import dgl
 
 from rl_agent.hybrid_cp_rl_solver.architecture.graph_attention_network import GATNetwork
+from rl_agent.hybrid_cp_rl_solver.architecture.graph_attention_network_onnx import GATNetworkONNX
 
 
 class ActorCritic(nn.Module):
@@ -13,7 +14,7 @@ class ActorCritic(nn.Module):
     Definition of an actor-critic architecture used for PPO algorithm.
     """
 
-    def __init__(self, args, num_node_feat, num_edge_feat):
+    def __init__(self, args, num_node_feat, num_edge_feat, onnx=True):
         """
         Initialization of the actor-critic with two networks (the actor: outputing probabilities of selecting actions,
         and the critic, outputing an approximation of the state)
@@ -32,11 +33,29 @@ class ActorCritic(nn.Module):
                           (self.args.latent_dim, self.args.latent_dim),
                           (self.args.latent_dim, self.args.latent_dim)]
 
-        # actor
-        self.action_layer = GATNetwork(self.embedding, self.args.hidden_layer, self.args.latent_dim, 1)
+        if onnx:
+            self.action_layer = GATNetworkONNX(
+                layer_features=self.embedding,
+                n_hidden_layer=self.args.hidden_layer,
+                latent_dim=self.args.latent_dim,
+                output_dim=1,
+                graph_pooling=False
+            )
 
-        # critic
-        self.value_layer = GATNetwork(self.embedding, self.args.hidden_layer, self.args.latent_dim, 1)
+            self.value_layer = GATNetworkONNX(
+                layer_features=self.embedding,
+                n_hidden_layer=self.args.hidden_layer,
+                latent_dim=self.args.latent_dim,
+                output_dim=1,
+                graph_pooling=True
+            )
+        
+        else:
+            # actor
+            self.action_layer = GATNetwork(self.embedding, self.args.hidden_layer, self.args.latent_dim, 1)
+
+            # critic
+            self.value_layer = GATNetwork(self.embedding, self.args.hidden_layer, self.args.latent_dim, 1)
 
     def act(self, graph_state, available_tensor):
         """
