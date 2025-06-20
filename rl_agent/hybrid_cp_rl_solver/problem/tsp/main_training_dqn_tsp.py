@@ -36,6 +36,7 @@ def parse_arguments():
     parser.add_argument('--plot_training', type=int, default=1)
     parser.add_argument('--mode', default='cpu', help='cpu/gpu')
 
+    parser.add_argument('--onnx', type=int, default=1, help='1 if onnx compatible, 0 if pytorch native')
 
     return parser.parse_args()
 
@@ -62,6 +63,7 @@ if __name__ == '__main__':
     print("[INFO] n_episode: %d" % args.n_episode)
     print("[INFO] time_limit: %d" % args.time_limit)
     print("[INFO] device: %s" % args.mode)
+    print("[INFO] onnx compatible model: %d" % args.onnx)
     print("***********************************************************")
     sys.stdout.flush()
 
