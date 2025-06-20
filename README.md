@@ -71,7 +71,7 @@ cd ../../
 ```
 
 ### 4. Install Dependencies
-### Install PyTorch and DGL (Deep Graph Library) (GPU version)
+### Install PyTorch and DGL (Deep Graph Library: https://www.dgl.ai/) (GPU version)
 If using a GPU, install PyTorch with CUDA 11.8 support:
 
 ```sh
@@ -189,10 +189,13 @@ source ./didp-rs-dev/didppy/didppy-release/bin/activate
 If no GPU is detected, the training will automatically run on the CPU.
 
 ```sh
+# WSL/Linux
 ./run_training_dqn_tsp.sh # DQN
-./run_training_dqn_tsp.sh # PPO
+./run_training_ppo_tsp.sh # PPO
 
-bash run_training_dqn_tsp.sh # MAC OS
+# MAC OS
+bash run_training_dqn_tsp.sh
+bash run_training_ppo_tsp.sh
 ```
 
 ### 3. Solve instances
@@ -201,8 +204,10 @@ On macOS, `resource.setrlimit` does not work for limiting memory usage, so the s
 
 #### TSP
 ```
-./solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS
-./solve_tsp.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS
+# DQN guidance using CABS
+./solve_tsp.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS # policy-name needs to be set none
+# PPO guidance using CABS
+./solve_tsp.sh --n 20 --heuristic dual --policy-name ppo --solver-name CABS # heuristic needs to be set dual
 
 bash solve_tsp_mac.sh --n 20 --heuristic dqn --policy-name none --solver-name CABS # MAC OS
 
